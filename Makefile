@@ -13,6 +13,8 @@ SRC = \
 	src/ui/ui_theme.c \
 	src/ui/ui_console.c \
 	src/ui/ui_table.c \
+	src/ui/ui_loading.c \
+	src/ui/ui_menu.c \
 	src/db/db.c \
 	src/api/usuario_cadastrar.c \
 	src/api/usuario_listar.c \
@@ -24,8 +26,9 @@ SRC = \
 	src/services/usuario_buscar_por_id_service.c \
 	src/services/usuario_atualizar_service.c \
 	src/services/usuario_deletar_service.c \
-	src/ui/ui_loading.c \
-	src/ui/ui_menu.c
+	src/modules/main_menu/main_menu.c \
+	src/modules/usuarios/usuarios_menu.c \
+	src/modules/exemplo_2/exemplo_2_menu.c
 
 all: build run
 

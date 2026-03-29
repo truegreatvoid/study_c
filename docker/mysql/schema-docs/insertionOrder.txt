@@ -1,8 +1,0 @@
-usuario
-profissional
-denuncia
-emergencia
-atendimento
-curso
-emprego
-servico
