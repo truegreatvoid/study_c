@@ -16,7 +16,7 @@ services:
       - --collation-server=utf8mb4_unicode_ci
     volumes:
       - mysql_data:/var/lib/mysql
-      - ../../sql:/docker-entrypoint-initdb.d
+      - ../../sql:/docker-entrypoint-initdb.d:ro
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uapp", "-papp"]
       interval: 10s
@@ -26,9 +26,31 @@ services:
     networks:
       - network
 
+  schemaspy:
+    container_name: docker_schemaspy
+    image: schemaspy/schemaspy:latest
+    profiles:
+      - tools
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - network
+    volumes:
+      - ./schema-docs:/output
+    command: >
+      -t mysql
+      -host mysql
+      -port 3306
+      -db viva_segura
+      -s viva_segura
+      -u app
+      -p app
+      
 volumes:
   mysql_data:
 
 networks:
   network:
+    name: inter_mysql_network
     driver: bridge
